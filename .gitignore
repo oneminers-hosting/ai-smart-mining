@@ -1,0 +1,23 @@
+Python
+
+pycache/ *.pyc *.pyo *.pyd .Python env/ venv/ ENV/ env.bak/ venv.bak/
+
+Logs and databases
+
+smart_mining.log mining_stats.db
+
+IDE and editor files
+
+.vscode/ .idea/ *.sublime-project *.sublime-workspace
+
+System files
+
+.DS_Store Thumbs.db
+
+Temporary files
+
+*.bak *.swp *~
+
+Build and distribution
+
+build/ dist/ *.egg-info/
