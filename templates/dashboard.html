@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mining Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h1, h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Smart Mining Dashboard</h1>
+    
+    <h2>Miners</h2>
+    <table>
+        <tr>
+            <th>IP</th>
+            <th>Model</th>
+            <th>Hashrate</th>
+            <th>Temperature</th>
+            <th>Fan Speed</th>
+            <th>Status</th>
+            <th>Current Pool</th>
+        </tr>
+        {% for miner in miners %}
+        <tr>
+            <td>{{ miner.ip }}</td>
+            <td>{{ miner.model }}</td>
+            <td>{{ miner.hashrate }}</td>
+            <td>{{ miner.temperature }}°C</td>
+            <td>{{ miner.fan_speed }} RPM</td>
+            <td>{{ miner.status }}</td>
+            <td>{{ miner.current_pool.name if miner.current_pool else 'None' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Pools</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Coin</th>
+            <th>Luck</th>
+            <th>Hashrate</th>
+            <th>Workers</th>
+        </tr>
+        {% for pool in pools %}
+        <tr>
+            <td>{{ pool.name }}</td>
+            <td>{{ pool.coin }}</td>
+            <td>{{ pool.luck }}%</td>
+            <td>{{ pool.hashrate }}</td>
+            <td>{{ pool.workers }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        // Periodic refresh of stats
+        function refreshStats() {
+            fetch('/api/stats')
+                .then(response => response.json())
+                .then(data => {
+                    // Update UI with new stats (simplified)
+                    console.log('Updated stats:', data);
+                });
+        }
+        setInterval(refreshStats, 30000); // Refresh every 30 seconds
+    </script>
+</body>
+</html>
