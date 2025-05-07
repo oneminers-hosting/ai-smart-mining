@@ -1,0 +1,22 @@
+network_range: "192.168.1.0/24"
+monitor_interval: 300
+pools:
+  - name: "Pool1"
+    url: "stratum+tcp://pool1.example.com:3333"
+    luck_api: "https://api.pool1.example.com/stats/luck"
+    priority: 1
+    coin: "BTC"
+  - name: "Pool2"
+    url: "stratum+tcp://pool2.example.com:3333"
+    luck_api: "https://api.pool2.example.com/stats/luck"
+    priority: 2
+    coin: "LTC"
+miners:
+  - ip: "192.168.1.100"
+    username: "admin"
+    password: "admin"
+    model: "Antminer S19"
+  - ip: "192.168.1.101"
+    username: "admin"
+    password: "admin"
+    model: "Whatsminer M30S"
